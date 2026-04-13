@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外交官人格觉醒测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050b24;
+            color: #ffffff;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            overflow-x: hidden;
+        }
+        .cyber-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        .neon-text {
+            text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6;
+        }
+        .neon-border-pink {
+            border: 2px solid #f472b6;
+            box-shadow: 0 0 15px rgba(244, 114, 182, 0.5);
+        }
+        .btn-gradient:active {
+            transform: scale(0.95);
+        }
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="app" class="max-w-md w-full">
+        
+        <div id="welcome-screen" class="text-center fade-in">
+            <h1 class="text-5xl font-bold mb-6 neon-text" style="font-family: 'ZCOOL KuaiLe';">启航！<br>全球决策玩家</h1>
+            <p class="text-blue-300 mb-8 tracking-widest text-sm">穿越三大洲，觉醒你的外交官灵魂</p>
+            <div class="relative w-64 h-64 mx-auto mb-10">
+                <div class="absolute inset-0 bg-blue-500 rounded-full opacity-20 animate-pulse"></div>
+                <img src="https://img.icons8.com/clouds/200/rocket.png" class="relative z-10 mx-auto mt-10" alt="Rocket">
+            </div>
+            <button onclick="startTest()" class="btn-gradient w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-full text-xl font-bold border-b-4 border-blue-800 transition-all">
+                觉醒我的外交人格
+            </button>
+        </div>
+
+        <div id="context-screen" class="hidden fade-in">
+            <div class="cyber-card p-6 rounded-3xl mb-6">
+                <div class="flex items-center mb-4">
+                    <span id="country-emoji" class="text-4xl mr-3">🇹🇭</span>
+                    <h2 id="country-name" class="text-2xl font-bold text-blue-400 italic">泰国｜文化穿搭</h2>
+                </div>
+                <div id="context-content" class="space-y-3 text-gray-300 text-sm leading-relaxed">
+                    </div>
+            </div>
+            <button onclick="showQuestion()" class="w-full py-4 bg-pink-600 hover:bg-pink-500 rounded-2xl font-bold transition-all shadow-lg">
+                接受挑战
+            </button>
+        </div>
+
+        <div id="question-screen" class="hidden fade-in">
+            <div class="mb-4 flex justify-between items-center px-2">
+                <span id="progress-text" class="text-xs font-mono text-blue-400">MISSION: 01/06</span>
+                <div class="w-32 h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-blue-500 transition-all duration-300" style="width: 16%"></div>
+                </div>
+            </div>
+            <div class="cyber-card p-6 rounded-3xl mb-6">
+                <p id="question-text" class="text-lg font-bold mb-8">如果你是外交官，要让泰国年轻人愿意尝试“旗袍”，你会怎么做？</p>
+                <div id="options-container" class="space-y-4">
+                    </div>
+            </div>
+        </div>
+
+        <div id="loading-screen" class="hidden text-center fade-in">
+            <div class="inline-block w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6"></div>
+            <h2 class="text-2xl font-bold neon-text">正在分析你的外交电波...</h2>
+            <p class="text-gray-400 mt-2">正在同步跨国数据流</p>
+        </div>
+
+        <div id="result-screen" class="hidden fade-in">
+            <div class="neon-border-pink p-1 rounded-3xl">
+                <div class="bg-slate-900 p-8 rounded-[1.4rem] text-center">
+                    <p id="result-tag" class="text-pink-400 font-mono text-xs mb-2">#社交捕手 #情绪共鸣</p>
+                    <h2 id="result-name" class="text-4xl font-bold text-white mb-4 neon-text">潮汐故事官</h2>
+                    <hr class="border-gray-800 mb-6">
+                    <div class="space-y-6 text-left">
+                        <div>
+                            <p class="text-blue-400 text-xs font-bold uppercase mb-1">人格简介</p>
+                            <p id="result-desc" class="text-gray-300 text-sm">你是冲浪在网络最前线的灵感家，懂得用一个段子、一个短视频拍碎冷冰冰的隔阂。</p>
+                        </div>
+                        <div class="bg-blue-900/30 p-4 rounded-xl">
+                            <p class="text-pink-400 text-xs font-bold uppercase mb-1">外交信条</p>
+                            <p id="result-motto" class="text-white italic text-sm italic font-serif">“没有跨越不了的海洋，只要故事选对浪潮。”</p>
+                        </div>
+                        <div>
+                            <p class="text-yellow-400 text-xs font-bold uppercase mb-1">觉醒超能力</p>
+                            <p id="result-power" class="text-gray-300 text-sm font-bold">【病毒涟漪】—— 随手扔出一个“梗”，激发全球浪潮。</p>
+                        </div>
+                    </div>
+                    <button onclick="location.reload()" class="mt-10 w-full py-3 border border-gray-600 rounded-xl text-gray-400 text-sm hover:bg-gray-800 transition-all">
+                        重新探索航线
+                    </button>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 text-[10px] mt-6">2026 预见未来·全球决策航行</p>
+        </div>
+
+    </div>
+
+    <script>
+        const states = {
+            THAILAND: {
+                name: "泰国｜文化穿搭",
+                emoji: "🇹🇭",
+                context: ["曼谷年轻人喜欢在节日、咖啡店拍照打卡", "传统服饰被“再设计”，变得更日常、更时尚", "好看的穿搭极易传播，但太正式的反而少人穿"],
+                questions: [
+                    {
+                        text: "要让泰国年轻人愿意尝试“旗袍”，你会怎么做？",
+                        options: {
+                            A: "做广告展示旗袍的文化历史意义",
+                            B: "邀时尚博主分享旗袍的日常穿搭",
+                            C: "在商场设置旗袍试穿拍照打卡区"
+                        }
+                    },
+                    {
+                        text: "大家觉得旗袍好看但不知何时穿，你会怎么推动？",
+                        options: {
+                            A: "发布内容介绍旗袍在中国的礼仪文化",
+                            B: "和泰国本地品牌推出改良日常款旗袍",
+                            C: "举办“旗袍日”活动鼓励穿着逛街拍照"
+                        }
+                    }
+                ]
+            },
+            NIGERIA: {
+                name: "尼日利亚｜中国竹编",
+                emoji: "🇳🇬",
+                context: ["年轻人喜欢个性和“手作感”的东西", "人们易被“真实制作过程”和故事打动", "本地有编织文化，但也看重产品的日常实用性"],
+                questions: [
+                    {
+                        text: "要让年轻人了解“中国竹编”，你会怎么做？",
+                        options: {
+                            A: "用视频介绍竹编的历史工艺和非遗文化",
+                            B: "找本地创作者分享体验制作竹编的过程",
+                            C: "举办DIY工作坊让大家亲手编小物件"
+                        }
+                    },
+                    {
+                        text: "很多人问竹编能用来做什么，你会怎么推动？",
+                        options: {
+                            A: "强调竹编在中国的传统用途和文化价值",
+                            B: "展示竹编变现代生活用品（如包、装饰）",
+                            C: "和本地设计师合作做本地风格的竹编产品"
+                        }
+                    }
+                ]
+            },
+            GERMANY: {
+                name: "德国｜中国玩具品牌",
+                emoji: "🇩🇪",
+                context: ["重视孩子的动手能力、安全与环保教育意义", "习惯看测评和评价，对夸张广告非常敏感", "家长关注玩具是否有逻辑思维启发性"],
+                questions: [
+                    {
+                        text: "要帮助中国玩具品牌建立信任，你会怎么做？",
+                        options: {
+                            A: "强调中国制造能力和国际质量标准认证",
+                            B: "分享德国家庭使用该玩具的真实故事",
+                            C: "在社区或学校组织大型拼装体验活动"
+                        }
+                    },
+                    {
+                        text: "家长非常关注环保与安全指标，你会怎么推动？",
+                        options: {
+                            A: "用官方广告强调认证数据和检测标准",
+                            B: "让专业测评博主分享真实的暴力评测",
+                            C: "举办亲子试玩日让家长孩子现场体验"
+                        }
+                    }
+                ]
+            }
+        };
+
+        const personalities = {
+            A: { name: "极光传声官", tag: "#高能广播 #实力宣告", motto: "“当实力足够耀眼，全世界都会为你抬头。”", desc: "你是天生的聚光灯中心，拥有让真相像极光一样划破夜空的力量。你拒绝低调，认为实力外交必须响亮且有气场。", power: "【极光扩散】—— 发出高频信号，瞬间覆盖全场。" },
+            B: { name: "潮汐故事官", tag: "#社交捕手 #内容弄潮儿", motto: "“没有跨越不了的海洋，只要故事选对浪潮。”", desc: "你是冲浪在社交最前线的灵感家，擅长用段子和故事拍碎隔阂。你不仅在出海，你是在与世界谈心。", power: "【病毒涟漪】—— 随手扔出一个“梗”，激发全球共鸣。" },
+            C: { name: "大地营筑师", tag: "#硬核实干 #基建达人", motto: "“友谊不是谈出来的，是靠双手种出来的。”", desc: "你是脚踏实地的行动派，信奉看见才叫真。你通过亲手搭建的桥梁和项目，换取异国土地上最稳固的信任。", power: "【万物生长】—— 只要双脚落地，便能升起未来之城。" },
+            AB: { name: "霓虹领航官", tag: "#双栖偶像 #焦点掌控", motto: "“最硬核的真相，要用最潮的方式发射。”", desc: "你是外交界的巨星，既有大国品牌的硬核实力，又有玩转社交媒体的手段。你用最炫的外壳包裹最坚硬的核心。", power: "【高频聚焦】—— 开启霓虹力场，瞬间斩获全球目光。" },
+            AC: { name: "泰坦筑梦匠", tag: "#重工浪漫 #梦想实体化", motto: "“我不画大饼，我只负责把蓝图里的世界盖好。”", desc: "你拥有钢铁般的直觉，擅长把宏大的宏大叙事转化为实实在在的工程奇迹。你是品牌信誉的超级守门员。", power: "【泰坦武装】—— 召唤机械巨臂，在虚空中组装未来。" },
+            BC: { name: "幻彩织造师", tag: "#创意炼金 #生活艺术家", motto: "“融合不是妥协，是创造一种全新的美丽。”", desc: "你是跨文化交流的翻译家，擅长把传统工艺与现代技术织在一起。你不仅出海产品，更在出海一种共同生活的方式。", power: "【幻彩合成】—— 挥动丝带，将碎片合成为美丽现实空间。" },
+            ABC: { name: "全能调律官", tag: "#全能指挥 #终极MVP", motto: "“真正的强大，是不留死角的和谐。”", desc: "你是外交宇宙的终极协调者，游刃有余地掌控实力、情感与实战的平衡。无论场面多复杂，你都能一键切换。", power: "【寰宇同步】—— 同步所有变量，让全球频率在此时共振。" }
+        };
+
+        let currentCountryIndex = 0;
+        let currentQuestionIndex = 0;
+        let score = { A: 0, B: 0, C: 0 };
+        const countries = Object.keys(states);
+
+        function startTest() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            showContext();
+        }
+
+        function showContext() {
+            const country = states[countries[currentCountryIndex]];
+            document.getElementById('country-emoji').innerText = country.emoji;
+            document.getElementById('country-name').innerText = country.name;
+            const contentDiv = document.getElementById('context-content');
+            contentDiv.innerHTML = country.context.map(item => `<p class="flex items-start"><span class="text-blue-500 mr-2">•</span>${item}</p>`).join('');
+            
+            document.getElementById('question-screen').classList.add('hidden');
+            document.getElementById('context-screen').classList.remove('hidden');
+        }
+
+        function showQuestion() {
+            const country = states[countries[currentCountryIndex]];
+            const question = country.questions[currentQuestionIndex];
+            
+            document.getElementById('context-screen').classList.add('hidden');
+            document.getElementById('question-screen').classList.remove('hidden');
+            
+            const totalQ = currentCountryIndex * 2 + currentQuestionIndex + 1;
+            document.getElementById('progress-text').innerText = `MISSION: 0${totalQ}/06`;
+            document.getElementById('progress-bar').style.width = (totalQ / 6 * 100) + '%';
+            
+            document.getElementById('question-text').innerText = question.text;
+            const optionsDiv = document.getElementById('options-container');
+            optionsDiv.innerHTML = '';
+            
+            ['A', 'B', 'C'].forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "w-full py-4 px-6 text-left border border-gray-700 rounded-2xl hover:bg-blue-900/40 hover:border-blue-500 transition-all flex items-center";
+                btn.innerHTML = `<span class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center mr-4 text-xs font-mono border border-gray-600">${opt}</span><span class="text-sm">${question.options[opt]}</span>`;
+                btn.onclick = () => selectOption(opt);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function selectOption(opt) {
+            score[opt]++;
+            if (currentQuestionIndex < 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else if (currentCountryIndex < 2) {
+                currentCountryIndex++;
+                currentQuestionIndex = 0;
+                showContext();
+            } else {
+                finishTest();
+            }
+        }
+
+        function finishTest() {
+            document.getElementById('question-screen').classList.add('hidden');
+            document.getElementById('loading-screen').classList.remove('hidden');
+            
+            setTimeout(() => {
+                const resultKey = calculateResult();
+                const person = personalities[resultKey];
+                
+                document.getElementById('result-tag').innerText = person.tag;
+                document.getElementById('result-name').innerText = person.name;
+                document.getElementById('result-desc').innerText = person.desc;
+                document.getElementById('result-motto').innerText = person.motto;
+                document.getElementById('result-power').innerText = person.power;
+                
+                document.getElementById('loading-screen').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+            }, 2000);
+        }
+
+        function calculateResult() {
+            const { A, B, C } = score;
+            // 绝对多数
+            if (A > 3) return 'A';
+            if (B > 3) return 'B';
+            if (C > 3) return 'C';
+            // 均衡型
+            if (A >= 2 && B >= 2 && C >= 2) return 'ABC';
+            // 双主导
+            if (A >= 2 && B >= 2 && A+B >= 4) return 'AB';
+            if (A >= 2 && C >= 2 && A+C >= 4) return 'AC';
+            if (B >= 2 && C >= 2 && B+C >= 4) return 'BC';
+            
+            // 默认兜底：按最高分
+            const max = Math.max(A, B, C);
+            return Object.keys(score).find(key => score[key] === max);
+        }
+    </script>
+</body>
+</html>
