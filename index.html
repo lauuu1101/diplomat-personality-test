@@ -60,7 +60,7 @@
                     <h2 id="country-name" class="text-2xl font-bold text-blue-400 italic">泰国｜文化穿搭</h2>
                 </div>
                 <div id="context-content" class="space-y-3 text-gray-300 text-sm leading-relaxed">
-                    </div>
+                </div>
             </div>
             <button onclick="showQuestion()" class="w-full py-4 bg-pink-600 hover:bg-pink-500 rounded-2xl font-bold transition-all shadow-lg">
                 接受挑战
@@ -77,7 +77,7 @@
             <div class="cyber-card p-6 rounded-3xl mb-6">
                 <p id="question-text" class="text-lg font-bold mb-8">如果你是外交官，要让泰国年轻人愿意尝试“旗袍”，你会怎么做？</p>
                 <div id="options-container" class="space-y-4">
-                    </div>
+                </div>
             </div>
         </div>
 
@@ -90,6 +90,7 @@
         <div id="result-screen" class="hidden fade-in">
             <div class="neon-border-pink p-1 rounded-3xl">
                 <div class="bg-slate-900 p-8 rounded-[1.4rem] text-center">
+                    <img id="result-image" class="w-32 h-32 mx-auto mb-4 object-contain" alt="">
                     <p id="result-tag" class="text-pink-400 font-mono text-xs mb-2">#社交捕手 #情绪共鸣</p>
                     <h2 id="result-name" class="text-4xl font-bold text-white mb-4 neon-text">潮汐故事官</h2>
                     <hr class="border-gray-800 mb-6">
@@ -100,7 +101,7 @@
                         </div>
                         <div class="bg-blue-900/30 p-4 rounded-xl">
                             <p class="text-pink-400 text-xs font-bold uppercase mb-1">外交信条</p>
-                            <p id="result-motto" class="text-white italic text-sm italic font-serif">“没有跨越不了的海洋，只要故事选对浪潮。”</p>
+                            <p id="result-motto" class="text-white italic text-sm font-serif">“没有跨越不了的海洋，只要故事选对浪潮。”</p>
                         </div>
                         <div>
                             <p class="text-yellow-400 text-xs font-bold uppercase mb-1">觉醒超能力</p>
@@ -136,7 +137,7 @@
                         text: "你发现很多人觉得“旗袍很好看，但不知道什么时候穿”，你会怎么推动？",
                         options: {
                             A: "发布内容，介绍旗袍在中国不同场合的穿着文化（节日、礼仪等）",
-                            B: "和泰国本地品牌合作，推出“改良旗袍日常款",
+                            B: "和泰国本地品牌合作，推出“改良旗袍日常款”",
                             C: "举办“旗袍日”活动，鼓励大家穿旗袍逛街、拍照"
                         }
                     }
@@ -150,7 +151,7 @@
                     {
                         text: "如果你是外交官，要让年轻人了解“中国竹编”，你会怎么做？",
                         options: {
-                            A: "用视频介绍竹编的历史、工艺和“中国非遗文化",
+                            A: "用视频介绍竹编的历史、工艺和“中国非遗文化”",
                             B: "找本地手工艺创作者，分享他们体验竹编制作的过程",
                             C: "举办“竹编DIY工作坊”，让大家亲手编一个小物件"
                         }
@@ -191,13 +192,62 @@
         };
 
         const personalities = {
-            A: { name: "极光传声官", image: "images/A.png", tag: "#高能广播 #实力宣告", motto: "“当实力足够耀眼，全世界都会为你抬头。”", desc: "你是天生的标准制定者。在你眼中，外交不只是妥协，更是实力的无保留展示。你拥有极强的自信和穿透力，厌恶暧昧不清和低效。你相信真正的外交应当像恒星一样，自带引力场，不需要刻意讨好，只需展示真相。当别人还在小声试探时，你已经用最坦荡、最响亮的方式宣告了未来的规则。", power: "【极光扩散】—— 发出高频信号，瞬间覆盖全场。" },
-            B: { name: "潮汐故事官", image: "images/B.png", tag: "#社交捕手 #内容弄潮儿", motto: "“没有跨越不了的海洋，只要故事选对浪潮。”", desc: "你是冲浪在社交最前线的灵感家，擅长用段子和故事拍碎隔阂。你不仅在出海，你是在与世界谈心。", power: "【病毒涟漪】—— 随手扔出一个“梗”，激发全球共鸣。" },
-            C: { name: "大地营筑师", tag: "#硬核实干 #基建达人", motto: "“友谊不是谈出来的，是靠双手种出来的。”", desc: "你是脚踏实地的行动派，信奉看见才叫真。你通过亲手搭建的桥梁和项目，换取异国土地上最稳固的信任。", power: "【万物生长】—— 只要双脚落地，便能升起未来之城。" },
-            AB: { name: "霓虹领航官", tag: "#双栖偶像 #焦点掌控", motto: "“最硬核的真相，要用最潮的方式发射。”", desc: "你是外交界的巨星，既有大国品牌的硬核实力，又有玩转社交媒体的手段。你用最炫的外壳包裹最坚硬的核心。", power: "【高频聚焦】—— 开启霓虹力场，瞬间斩获全球目光。" },
-            AC: { name: "泰坦筑梦匠", tag: "#重工浪漫 #梦想实体化", motto: "“我不画大饼，我只负责把蓝图里的世界盖好。”", desc: "你拥有钢铁般的直觉，擅长把宏大的宏大叙事转化为实实在在的工程奇迹。你是品牌信誉的超级守门员。", power: "【泰坦武装】—— 召唤机械巨臂，在虚空中组装未来。" },
-            BC: { name: "幻彩织造师", tag: "#创意炼金 #生活艺术家", motto: "“融合不是妥协，是创造一种全新的美丽。”", desc: "你是跨文化交流的翻译家，擅长把传统工艺与现代技术织在一起。你不仅出海产品，更在出海一种共同生活的方式。", power: "【幻彩合成】—— 挥动丝带，将碎片合成为美丽现实空间。" },
-            ABC: { name: "全能调律官", tag: "#全能指挥 #终极MVP", motto: "“真正的强大，是不留死角的和谐。”", desc: "你是外交宇宙的终极协调者，游刃有余地掌控实力、情感与实战的平衡。无论场面多复杂，你都能一键切换。", power: "【寰宇同步】—— 同步所有变量，让全球频率在此时共振。" }
+            A: {
+                name: "极光传声官",
+                image: "https://img.icons8.com/clouds/200/star.png",
+                tag: "#高能广播 #实力宣告",
+                motto: "“当实力足够耀眼，全世界都会为你抬头。”",
+                desc: "你是天生的标准制定者。在你眼中，外交不只是妥协，更是实力的无保留展示。你拥有极强的自信和穿透力，厌恶暧昧不清和低效。你相信真正的外交应当像恒星一样，自带引力场，不需要刻意讨好，只需展示真相。当别人还在小声试探时，你已经用最坦荡、最响亮的方式宣告了未来的规则。",
+                power: "【极光扩散】—— 发出高频信号，瞬间覆盖全场。"
+            },
+            B: {
+                name: "潮汐故事官",
+                image: "https://img.icons8.com/clouds/200/wave.png",
+                tag: "#社交捕手 #内容弄潮儿",
+                motto: "“没有跨越不了的海洋，只要故事选对浪潮。”",
+                desc: "你是冲浪在社交最前线的灵感家，擅长用段子和故事拍碎隔阂。你不仅在出海，你是在与世界谈心。",
+                power: "【病毒涟漪】—— 随手扔出一个“梗”，激发全球共鸣。"
+            },
+            C: {
+                name: "大地营筑师",
+                image: "https://img.icons8.com/clouds/200/plant.png",
+                tag: "#硬核实干 #基建达人",
+                motto: "“友谊不是谈出来的，是靠双手种出来的。”",
+                desc: "你是脚踏实地的行动派，信奉看见才叫真。你通过亲手搭建的桥梁和项目，换取异国土地上最稳固的信任。",
+                power: "【万物生长】—— 只要双脚落地，便能升起未来之城。"
+            },
+            AB: {
+                name: "霓虹领航官",
+                image: "https://img.icons8.com/clouds/200/neon.png",
+                tag: "#双栖偶像 #焦点掌控",
+                motto: "“最硬核的真相，要用最潮的方式发射。”",
+                desc: "你是外交界的巨星，既有大国品牌的硬核实力，又有玩转社交媒体的手段。你用最炫的外壳包裹最坚硬的核心。",
+                power: "【高频聚焦】—— 开启霓虹力场，瞬间斩获全球目光。"
+            },
+            AC: {
+                name: "泰坦筑梦匠",
+                image: "https://img.icons8.com/clouds/200/robot.png",
+                tag: "#重工浪漫 #梦想实体化",
+                motto: "“我不画大饼，我只负责把蓝图里的世界盖好。”",
+                desc: "你拥有钢铁般的直觉，擅长把宏大的宏大叙事转化为实实在在的工程奇迹。你是品牌信誉的超级守门员。",
+                power: "【泰坦武装】—— 召唤机械巨臂，在虚空中组装未来。"
+            },
+            BC: {
+                name: "幻彩织造师",
+                image: "https://img.icons8.com/clouds/200/color.png",
+                tag: "#创意炼金 #生活艺术家",
+                motto: "“融合不是妥协，是创造一种全新的美丽。”",
+                desc: "你是跨文化交流的翻译家，擅长把传统工艺与现代技术织在一起。你不仅出海产品，更在出海一种共同生活的方式。",
+                power: "【幻彩合成】—— 挥动丝带，将碎片合成为美丽现实空间。"
+            },
+            ABC: {
+                name: "全能调律官",
+                image: "https://img.icons8.com/clouds/200/universe.png",
+                tag: "#全能指挥 #终极MVP",
+                motto: "“真正的强大，是不留死角的和谐。”",
+                desc: "你是外交宇宙的终极协调者，游刃有余地掌控实力、情感与实战的平衡。无论场面多复杂，你都能一键切换。",
+                power: "【寰宇同步】—— 同步所有变量，让全球频率在此时共振。"
+            }
         };
 
         let currentCountryIndex = 0;
@@ -267,6 +317,8 @@
                 const resultKey = calculateResult();
                 const person = personalities[resultKey];
                 
+                document.getElementById('result-image').src = person.image;
+                document.getElementById('result-image').alt = person.name;
                 document.getElementById('result-tag').innerText = person.tag;
                 document.getElementById('result-name').innerText = person.name;
                 document.getElementById('result-desc').innerText = person.desc;
@@ -280,18 +332,14 @@
 
         function calculateResult() {
             const { A, B, C } = score;
-            // 绝对多数
             if (A > 3) return 'A';
             if (B > 3) return 'B';
             if (C > 3) return 'C';
-            // 均衡型
             if (A >= 2 && B >= 2 && C >= 2) return 'ABC';
-            // 双主导
-            if (A >= 2 && B >= 2 && A+B >= 4) return 'AB';
-            if (A >= 2 && C >= 2 && A+C >= 4) return 'AC';
-            if (B >= 2 && C >= 2 && B+C >= 4) return 'BC';
+            if (A >= 2 && B >= 2) return 'AB';
+            if (A >= 2 && C >= 2) return 'AC';
+            if (B >= 2 && C >= 2) return 'BC';
             
-            // 默认兜底：按最高分
             const max = Math.max(A, B, C);
             return Object.keys(score).find(key => score[key] === max);
         }
