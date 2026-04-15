@@ -11,7 +11,7 @@
             background-color: #050b24;
             color: #ffffff;
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            overflow-x: hidden;
+            /* ❌ 删除 overflow-x: hidden; 解决点击失效问题 */
         }
         .cyber-card {
             background: rgba(15, 23, 42, 0.8);
@@ -48,7 +48,8 @@
                 <div class="absolute inset-0 bg-blue-500 rounded-full opacity-20 animate-pulse"></div>
                 <img src="https://img.icons8.com/clouds/200/rocket.png" class="relative z-10 mx-auto mt-10" alt="Rocket">
             </div>
-            <button onclick="startTest()" class="btn-gradient w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-full text-xl font-bold border-b-4 border-blue-800 transition-all">
+            <!-- ✅ 修复按钮样式，确保可点击 -->
+            <button onclick="startTest()" class="btn-gradient w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-full text-xl font-bold border-b-4 border-blue-800 transition-all cursor-pointer">
                 觉醒我的外交人格
             </button>
         </div>
@@ -60,9 +61,9 @@
                     <h2 id="country-name" class="text-2xl font-bold text-blue-400 italic">泰国｜文化穿搭</h2>
                 </div>
                 <div id="context-content" class="space-y-3 text-gray-300 text-sm leading-relaxed">
-                </div>
+                    </div>
             </div>
-            <button onclick="showQuestion()" class="w-full py-4 bg-pink-600 hover:bg-pink-500 rounded-2xl font-bold transition-all shadow-lg">
+            <button onclick="showQuestion()" class="w-full py-4 bg-pink-600 hover:bg-pink-500 rounded-2xl font-bold transition-all shadow-lg cursor-pointer">
                 接受挑战
             </button>
         </div>
@@ -77,7 +78,7 @@
             <div class="cyber-card p-6 rounded-3xl mb-6">
                 <p id="question-text" class="text-lg font-bold mb-8">如果你是外交官，要让泰国年轻人愿意尝试“旗袍”，你会怎么做？</p>
                 <div id="options-container" class="space-y-4">
-                </div>
+                    </div>
             </div>
         </div>
 
@@ -90,25 +91,26 @@
         <div id="result-screen" class="hidden fade-in">
             <div class="neon-border-pink p-1 rounded-3xl">
                 <div class="bg-slate-900 p-8 rounded-[1.4rem] text-center">
-                    <img id="result-image" class="w-32 h-32 mx-auto mb-4 object-contain" alt="">
-                    <p id="result-tag" class="text-pink-400 font-mono text-xs mb-2">#社交捕手 #情绪共鸣</p>
-                    <h2 id="result-name" class="text-4xl font-bold text-white mb-4 neon-text">潮汐故事官</h2>
+                    <!-- ✅ 图片路径用 GitHub Raw 链接，确保显示 -->
+                    <img id="result-image" src="https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/A.png" class="w-32 h-32 mx-auto mb-4 object-contain" alt="极光传声官">
+                    <p id="result-tag" class="text-pink-400 font-mono text-xs mb-2">#高能广播 #实力宣告</p>
+                    <h2 id="result-name" class="text-4xl font-bold text-white mb-4 neon-text">极光传声官</h2>
                     <hr class="border-gray-800 mb-6">
                     <div class="space-y-6 text-left">
                         <div>
                             <p class="text-blue-400 text-xs font-bold uppercase mb-1">人格简介</p>
-                            <p id="result-desc" class="text-gray-300 text-sm">你是冲浪在网络最前线的灵感家，懂得用一个段子、一个短视频拍碎冷冰冰的隔阂。</p>
+                            <p id="result-desc" class="text-gray-300 text-sm">你是天生的聚光灯中心，拥有让真相像极光一样划破夜空的力量。你拒绝低调，认为实力外交必须响亮且有气场。</p>
                         </div>
                         <div class="bg-blue-900/30 p-4 rounded-xl">
                             <p class="text-pink-400 text-xs font-bold uppercase mb-1">外交信条</p>
-                            <p id="result-motto" class="text-white italic text-sm font-serif">“没有跨越不了的海洋，只要故事选对浪潮。”</p>
+                            <p id="result-motto" class="text-white italic text-sm font-serif">“你是天生的标准制定者。在你眼中，外交不只是妥协，更是实力的无保留展示。你拥有极强的自信和穿透力，厌恶暧昧不清和低效。你相信真正的外交应当像恒星一样，自带引力场，不需要刻意讨好，只需展示真相。当别人还在小声试探时，你已经用最坦荡、最响亮的方式宣告了未来的规则。”</p>
                         </div>
                         <div>
                             <p class="text-yellow-400 text-xs font-bold uppercase mb-1">觉醒超能力</p>
-                            <p id="result-power" class="text-gray-300 text-sm font-bold">【病毒涟漪】—— 随手扔出一个“梗”，激发全球浪潮。</p>
+                            <p id="result-power" class="text-gray-300 text-sm font-bold">【极光扩散】—— 发出高频信号，瞬间覆盖全场。</p>
                         </div>
                     </div>
-                    <button onclick="location.reload()" class="mt-10 w-full py-3 border border-gray-600 rounded-xl text-gray-400 text-sm hover:bg-gray-800 transition-all">
+                    <button onclick="location.reload()" class="mt-10 w-full py-3 border border-gray-600 rounded-xl text-gray-400 text-sm hover:bg-gray-800 transition-all cursor-pointer">
                         重新探索航线
                     </button>
                 </div>
@@ -194,7 +196,7 @@
         const personalities = {
             A: {
                 name: "极光传声官",
-                image: "https://img.icons8.com/clouds/200/star.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/A.png",
                 tag: "#高能广播 #实力宣告",
                 motto: "“当实力足够耀眼，全世界都会为你抬头。”",
                 desc: "你是天生的标准制定者。在你眼中，外交不只是妥协，更是实力的无保留展示。你拥有极强的自信和穿透力，厌恶暧昧不清和低效。你相信真正的外交应当像恒星一样，自带引力场，不需要刻意讨好，只需展示真相。当别人还在小声试探时，你已经用最坦荡、最响亮的方式宣告了未来的规则。",
@@ -202,7 +204,7 @@
             },
             B: {
                 name: "潮汐故事官",
-                image: "https://img.icons8.com/clouds/200/wave.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/B.png",
                 tag: "#社交捕手 #内容弄潮儿",
                 motto: "“没有跨越不了的海洋，只要故事选对浪潮。”",
                 desc: "你是冲浪在社交最前线的灵感家，擅长用段子和故事拍碎隔阂。你不仅在出海，你是在与世界谈心。",
@@ -210,7 +212,7 @@
             },
             C: {
                 name: "大地营筑师",
-                image: "https://img.icons8.com/clouds/200/plant.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/C.png",
                 tag: "#硬核实干 #基建达人",
                 motto: "“友谊不是谈出来的，是靠双手种出来的。”",
                 desc: "你是脚踏实地的行动派，信奉看见才叫真。你通过亲手搭建的桥梁和项目，换取异国土地上最稳固的信任。",
@@ -218,7 +220,7 @@
             },
             AB: {
                 name: "霓虹领航官",
-                image: "https://img.icons8.com/clouds/200/neon.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/AB.png",
                 tag: "#双栖偶像 #焦点掌控",
                 motto: "“最硬核的真相，要用最潮的方式发射。”",
                 desc: "你是外交界的巨星，既有大国品牌的硬核实力，又有玩转社交媒体的手段。你用最炫的外壳包裹最坚硬的核心。",
@@ -226,7 +228,7 @@
             },
             AC: {
                 name: "泰坦筑梦匠",
-                image: "https://img.icons8.com/clouds/200/robot.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/AC.png",
                 tag: "#重工浪漫 #梦想实体化",
                 motto: "“我不画大饼，我只负责把蓝图里的世界盖好。”",
                 desc: "你拥有钢铁般的直觉，擅长把宏大的宏大叙事转化为实实在在的工程奇迹。你是品牌信誉的超级守门员。",
@@ -234,7 +236,7 @@
             },
             BC: {
                 name: "幻彩织造师",
-                image: "https://img.icons8.com/clouds/200/color.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/BC.png",
                 tag: "#创意炼金 #生活艺术家",
                 motto: "“融合不是妥协，是创造一种全新的美丽。”",
                 desc: "你是跨文化交流的翻译家，擅长把传统工艺与现代技术织在一起。你不仅出海产品，更在出海一种共同生活的方式。",
@@ -242,7 +244,7 @@
             },
             ABC: {
                 name: "全能调律官",
-                image: "https://img.icons8.com/clouds/200/universe.png",
+                image: "https://raw.githubusercontent.com/lauuu1101/diplomat-personality-test/main/images/ABC.png",
                 tag: "#全能指挥 #终极MVP",
                 motto: "“真正的强大，是不留死角的和谐。”",
                 desc: "你是外交宇宙的终极协调者，游刃有余地掌控实力、情感与实战的平衡。无论场面多复杂，你都能一键切换。",
@@ -255,6 +257,7 @@
         let score = { A: 0, B: 0, C: 0 };
         const countries = Object.keys(states);
 
+        // ✅ 确保函数正常执行
         function startTest() {
             document.getElementById('welcome-screen').classList.add('hidden');
             showContext();
@@ -288,7 +291,7 @@
             
             ['A', 'B', 'C'].forEach(opt => {
                 const btn = document.createElement('button');
-                btn.className = "w-full py-4 px-6 text-left border border-gray-700 rounded-2xl hover:bg-blue-900/40 hover:border-blue-500 transition-all flex items-center";
+                btn.className = "w-full py-4 px-6 text-left border border-gray-700 rounded-2xl hover:bg-blue-900/40 hover:border-blue-500 transition-all flex items-center cursor-pointer";
                 btn.innerHTML = `<span class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center mr-4 text-xs font-mono border border-gray-600">${opt}</span><span class="text-sm">${question.options[opt]}</span>`;
                 btn.onclick = () => selectOption(opt);
                 optionsDiv.appendChild(btn);
